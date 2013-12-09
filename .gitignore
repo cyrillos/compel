@@ -1,0 +1,12 @@
+*.o
+*.d
+*.bin
+*.elf
+*.out
+*.swp
+*.swo
+.git-ignore
+cscope*
+tags
+TAGS
+patches

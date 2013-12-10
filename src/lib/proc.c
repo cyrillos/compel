@@ -37,8 +37,10 @@ int parse_threads(pid_t pid, pid_t **_t, int *_n)
 
 	snprintf(path, sizeof(path), "/proc/%d/task", pid);
 	dir = opendir(path);
-	if (!dir)
+	if (!dir) {
+		pr_perror("Can't open %s", path);
 		return -1;
+	}
 
 	while ((de = readdir(dir))) {
 		pid_t *tmp;
@@ -82,8 +84,10 @@ int parse_children(pid_t pid, pid_t **_c, int *_n)
 
 	snprintf(path, sizeof(path), "/proc/%d/task", pid);
 	dir = opendir(path);
-	if (!dir)
+	if (!dir) {
+		pr_perror("Can't open %s", path);
 		return -1;
+	}
 
 	while ((de = readdir(dir))) {
 		if (dir_dots(de))
@@ -91,8 +95,10 @@ int parse_children(pid_t pid, pid_t **_c, int *_n)
 
 		snprintf(path, sizeof(path), "/proc/%d/task/%s/children", pid, de->d_name);
 		file = fopen(path, "r");
-		if (!file)
+		if (!file) {
+			pr_perror("Can't open %s", path);
 			goto err;
+		}
 
 		if (!(fgets(buf, sizeof(buf), file)))
 			buf[0] = 0;

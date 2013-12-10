@@ -28,6 +28,6 @@ extern void pstree_switch_state(struct pstree_item *root_item, int st);
 
 extern struct pstree_item *pstree_item_next(struct pstree_item *item);
 #define for_each_pstree_item(root, pi)		\
-	for (pi = root_item; pi; pi = pstree_item_next(pi))
+	for (pi = root; pi; pi = pstree_item_next(pi))
 
 #endif /* __COMPEL_PSTREE_H__ */

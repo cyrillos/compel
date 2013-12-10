@@ -1,0 +1,41 @@
+compel(1)
+========
+:doctype:       manpage
+:man source:    compel
+:man version:   0.0.1
+:man manual:    compel manual
+
+NAME
+----
+compel - compel a foreign process to execute code provided in binary blob
+
+SYNOPSIS
+--------
+*compel* 'command' ['options']
+
+*cpt2* run -t <pid> -f blob.o
+
+DESCRIPTION
+-----------
+*compel* is a command line utility to execute binary blob in another process address space.
+
+The 'command' can be one of the following:
+
+*run*::
+Initiate execution procedure.
+
+OPTIONS
+-------
+*-t*, *--tree* 'pid'::
+    Destination task identified by 'pid'.
+
+*-f*, *--file* 'path'::
+    Path to a file which contains executable blob.
+
+AUTHOR
+------
+OpenVZ team.
+
+COPYING
+-------
+Copyright \(C) 2013, Parallels Inc.

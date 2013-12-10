@@ -6,7 +6,11 @@
 *.swp
 *.swo
 .git-ignore
+*.so
 cscope*
 tags
 TAGS
 patches
+compel
+src/include/version.h
+src/include/config.h

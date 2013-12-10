@@ -93,7 +93,6 @@ int main(int argc, char *argv[])
 		}
 
 		if (libunseizetask) {
-			compel_data = libseizetask(pid);
 			pr_msg("libunseizetask: %d\n", libunseizetask(compel_data));
 		}
 	}

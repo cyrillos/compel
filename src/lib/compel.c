@@ -11,6 +11,7 @@
 #include "version.h"
 #include "xmalloc.h"
 #include "pstree.h"
+#include "ptrace.h"
 #include "types.h"
 #include "err.h"
 
@@ -40,7 +41,10 @@ void *lib_seize_task(pid_t pid)
 
 int lib_unseize_task(void *seize_data)
 {
-	return -EINVAL;
+	compel_handler_t *h = seize_data;
+	if (h)
+		pstree_switch_state(h->root, TASK_ALIVE);
+	return 0;
 }
 
 int lib_infect_task(void *seize_data)

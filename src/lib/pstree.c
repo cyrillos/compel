@@ -57,7 +57,7 @@ static void unseize_task_and_threads(const struct pstree_item *item, int st)
 		unseize_task(item->threads[i], st);
 }
 
-static void pstree_switch_state(struct pstree_item *root_item, int st)
+void pstree_switch_state(struct pstree_item *root_item, int st)
 {
 	struct pstree_item *item;
 

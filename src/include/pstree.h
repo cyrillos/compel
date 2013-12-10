@@ -24,6 +24,7 @@ struct pstree_item {
 
 extern struct pstree_item *alloc_pstree_item(void);
 extern int collect_pstree(compel_handler_t *handler, pid_t pid);
+extern void pstree_switch_state(struct pstree_item *root_item, int st);
 
 extern struct pstree_item *pstree_item_next(struct pstree_item *item);
 #define for_each_pstree_item(root, pi)		\

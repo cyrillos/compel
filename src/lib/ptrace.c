@@ -69,7 +69,7 @@ int seize_task(pid_t pid, pid_t ppid, pid_t *pgid, pid_t *sid)
 			if (pid == getpid())
 				pr_err("SEIZE %d: me itself is within dumped tree\n", pid);
 			else
-				pr_err("SEIZE %d: Unseizable non-zombie %d found, state %c, err %d\n",
+				pr_err("SEIZE %d: Unseizable non-zombie found, state %c, err %d\n",
 				       pid, ps.state, ret, ptrace_errno);
 			return -1;
 		}

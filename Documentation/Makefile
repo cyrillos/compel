@@ -3,6 +3,7 @@ A2X		:= a2x
 XMLTO		:= xmlto
 
 SRC		+= compel.txt
+SRC		+= libcompel.txt
 MANS		:= $(patsubst %.txt,%.1,$(SRC))
 
 all: $(MANS)

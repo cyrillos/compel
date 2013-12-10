@@ -1,0 +1,40 @@
+libcompel(1)
+============
+:doctype:       manpage
+:man source:    libcompel
+:man version:   0.0.1
+:man manual:    libcompel manual
+
+NAME
+----
+libcompel - library to execute code provided in binary blob
+
+DESCRIPTION
+-----------
+*libcompel* is a library to execute binary blob in another process address space.
+
+INTERFACE
+---------
+void lib_version(unsigned int *'major', unsigned int *'minor')::
+    This function returns 'major' and 'minor' version of the library.
+
+void *lib_seize_task(pid_t 'pid')::
+    This function seizes a task identified by 'pid' and returns
+    a pointer to 'seize_data' which must be kept by a calling side
+    and passed to appropriate library calls.
+
+int lib_unseize_task(void *'seize_data')
+
+int lib_infect_task(void *'seize_data')
+
+int lib_cure_task(void *'seize_data')
+
+int lib_exec(void *'seize_data')
+
+AUTHOR
+------
+OpenVZ team.
+
+COPYING
+-------
+Copyright \(C) 2013, Parallels Inc.

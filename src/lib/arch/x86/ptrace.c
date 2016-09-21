@@ -51,10 +51,11 @@ int ptrace_get_fpu(pid_t pid, fpu_state_t *fpu)
 	if (ptrace(PTRACE_GETREGSET, pid, (unsigned int)NT_X86_XSTATE, &iov) < 0) {
 		if (errno != ENODEV)
 			goto fpuerr;
-		else
+		else {
 			if (ptrace(PTRACE_GETFPREGS, pid, NULL, &fpu->xsave) < 0)
 				goto fpuerr;
 			fpu->has_xsave = false;
+		}
 	} else
 		fpu->has_xsave = true;
 	return 0;

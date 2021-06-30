@@ -47,12 +47,15 @@ static inline bool pr_quelled(unsigned int loglevel)
 static void __print_on_level(unsigned int loglevel, const char *format, va_list params)
 {
 	size_t size;
-
+	int ret;
+	
 	if (logfd < 0)
 		return;
 
 	size = vsnprintf(logbuf, PAGE_SIZE, format, params);
-	write(logfd, logbuf, size);
+	ret = write(logfd, logbuf, size);
+	if (ret < 0)
+		pr_err("Write on %s failed\n", __func__);
 }
 
 void print_on_level(unsigned int loglevel, const char *format, ...)

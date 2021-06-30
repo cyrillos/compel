@@ -30,7 +30,7 @@ static int pack_compel_obj(char **obj, size_t nobj,
 		const char *lib_path, char **libs, size_t nlibs, char *out)
 {
 	char command[1024] = { 0 };
-	char data[1024] = { 0 };
+	char data[1024] = { 0 }, *retc;
 	int ret = -1, pos, i;
 	FILE *f;
 
@@ -66,11 +66,15 @@ static int pack_compel_obj(char **obj, size_t nobj,
 
 	f = popen(command, "r");
 	if (f) {
-		fgets(data, sizeof(data), f);
+		retc = fgets(data, sizeof(data), f);
+		if (!retc){
+			pr_err("Can't read data from file\n");
+			goto end_ret;
+		}		
 		ret = data[0] == '\0' ? 0 : 1;
 		pclose(f);
 		if (!ret)
-			ret = libcompel_verify_packed(out ? : COMPEL_DEFAULT_PACK_OUT);
+end_ret:		ret = libcompel_verify_packed(out ? : COMPEL_DEFAULT_PACK_OUT);
 	} else
 		pr_perror("Can't run pack");
 	if (ret)
